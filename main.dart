@@ -121,47 +121,60 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildSearchBar() {
     return Container(
-      padding: EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.circular(12.0),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      child: Row(
         children: [
-          TextField(
-            decoration: InputDecoration(
-              hintText: 'Search...',
-              border: InputBorder.none,
-              suffixIcon: Icon(Icons.search),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Search...',
+                  border: InputBorder.none,
+                  suffixIcon: Icon(Icons.search),
+                ),
+              ),
             ),
           ),
-          SizedBox(height: 16),
+          SizedBox(width: 16),
+          Icon(Icons.filter_list),
         ],
       ),
     );
   }
 
   Widget _buildDateDisplay() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.0),
-      child: Row(
-        children: [
-          Container(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Container(
             padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.grey[300],
+              color: Colors.grey[300], // Gray box background color
+              borderRadius: BorderRadius.circular(8),
             ),
-            child: Icon(Icons.calendar_today, size: 20),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.calendar_today, size: 16),
+                SizedBox(width: 4),
+                Text(
+                  'May 25, 2022',
+                  style: TextStyle(fontSize: 14),
+                ),
+              ],
+            ),
           ),
-          SizedBox(width: 8),
-          Text(
-            'May 25, 2022',
-            style: TextStyle(fontSize: 16),
-          ),
-        ],
-      ),
+        ),
+        SizedBox(height: 16),
+        _buildTransactionSection(),
+      ],
     );
   }
 
@@ -169,20 +182,61 @@ class _HomePageState extends State<HomePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        SizedBox(height: 8),
         _buildTransactionItem(
-          name: 'John Doe',
-          phoneNumber: '123-456-7890',
-          amount: '\$100.00',
+          name: 'Emmanuel Rockson',
+          phoneNumber: '024 123 4567',
+          amount: '\GHS 500',
           isSuccess: true,
         ),
         SizedBox(height: 16),
         _buildTransactionItem(
-          name: 'Jane Smith',
-          phoneNumber: '987-654-3210',
-          amount: '\$50.00',
+          name: 'ABSA Bank',
+          phoneNumber: '024123 4567',
+          amount: '\GHS 500',
+          isSuccess: false,
+        ),
+        SizedBox(height: 24),
+        _buildDateHeader('June 1, 2022'),
+        SizedBox(height: 8),
+        _buildTransactionItem(
+          name: 'Emmanuel Rockson',
+          phoneNumber: '024 123 4567',
+          amount: '\GHS 500',
+          isSuccess: true,
+        ),
+        SizedBox(height: 16),
+        _buildTransactionItem(
+          name: 'Emmanuel Rockson',
+          phoneNumber: '024 123 4567',
+          amount: '\GHS 500',
           isSuccess: false,
         ),
       ],
+    );
+  }
+
+  Widget _buildDateHeader(String date) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Container(
+        padding: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: Colors.grey[300],
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.calendar_today, size: 16),
+            SizedBox(width: 4),
+            Text(
+              date,
+              style: TextStyle(fontSize: 14),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -257,8 +311,6 @@ class _HomePageState extends State<HomePage> {
                           Text(amount,
                               style:
                                   TextStyle(fontSize: 16, color: Colors.black)),
-                          SizedBox(width: 4),
-                          Icon(Icons.star, color: Colors.yellow, size: 16),
                         ],
                       ),
                     ],
