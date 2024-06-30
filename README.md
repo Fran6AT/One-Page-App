@@ -17,4 +17,5 @@ samples, guidance on mobile development, and a full API reference.
 
 
 
-![test](https://github.com/Fran6AT/One-Page-App/assets/105161775/ef1c2599-175d-4ff1-b893-84cc42330256)
+
+![test](https://github.com/Fran6AT/One-Page-App/assets/105161775/6105ff1a-5819-4f80-8d78-4bba8a0df61e)
